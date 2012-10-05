@@ -10,6 +10,7 @@
 
 @interface ViewController ()
 
+
 @end
 
 @implementation ViewController
@@ -28,7 +29,25 @@
     [userLocationManger startUpdatingHeading];
     
     isConnected = false;
+    
+    //Setup gesture recognition
+    
+    UISwipeGestureRecognizer *oneFingerSwipeUp = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(takeOff)];
+    [oneFingerSwipeUp setDirection:UISwipeGestureRecognizerDirectionUp];
+    [serverWebView addGestureRecognizer:oneFingerSwipeUp];
+    
+    UISwipeGestureRecognizer *oneFingerSwipeDown = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(land)];
+    [oneFingerSwipeDown setDirection:UISwipeGestureRecognizerDirectionDown];
+    [serverWebView addGestureRecognizer:oneFingerSwipeDown];
 
+}
+
+- (void)takeOff {
+    [serverWebView stringByEvaluatingJavaScriptFromString:@"takeOff();"];
+}
+
+- (void)land {
+    [serverWebView stringByEvaluatingJavaScriptFromString:@"land();"];
 }
 
 
