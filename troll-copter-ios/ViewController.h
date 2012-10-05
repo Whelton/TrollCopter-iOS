@@ -12,6 +12,7 @@
 @interface ViewController : UIViewController <UIWebViewDelegate, CLLocationManagerDelegate, CLLocationManagerDelegate, UIAccelerometerDelegate>{
     IBOutlet UIWebView *serverWebView;
     CLLocationManager *userLocationManger;
+    NSTimer *followTimer;
     
     BOOL isConnected;
     BOOL isFLipping;

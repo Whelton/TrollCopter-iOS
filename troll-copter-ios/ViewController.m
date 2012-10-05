@@ -21,7 +21,7 @@
     
     //Setup Webview
     serverWebView.delegate = self;
-    [serverWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://192.168.1.4:3000"]]];
+    [serverWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://192.168.1.3   :3000"]]];
     
     //Setup Location Manger
     userLocationManger = [[CLLocationManager alloc] init];
@@ -50,6 +50,10 @@
     UISwipeGestureRecognizer *oneFingerSwipeDown = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(land)];
     [oneFingerSwipeDown setDirection:UISwipeGestureRecognizerDirectionDown];
     [self.view addGestureRecognizer:oneFingerSwipeDown];
+    
+    followTimer = [NSTimer timerWithTimeInterval:1.0 target:self selector:@selector(copterGoForward:) userInfo:self repeats:YES];
+    
+
 
 }
 
@@ -77,24 +81,38 @@
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
 
+- (void)copterGoForward:(id)sender{
+    if (isConnected) {
+        [serverWebView stringByEvaluatingJavaScriptFromString:@"moveForward()"];
+    }
+}
+
 
 #pragma mark - UIAccelerometer methods
 
 - (void)accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration {
-    if (acceleration.z < -2 && isFLipping==false && isConnected == true) {
-        NSLog(@"Flipping!");
-        isFLipping = true;
+    if (acceleration.z < -1.9 && acceleration.x < -1 && acceleration.y > 1 && isFLipping==false) {
+        NSLog(@"back Flipping!");
+       // isFLipping = true;
         [serverWebView stringByEvaluatingJavaScriptFromString:@"doFlip();"];
     }
+    
+ /*   if (acceleration.z < - 0.9 && acceleration.x < - 0 && acceleration.y > 0 && acceleration.y < 0.8 && isFLipping==false ) {
+        NSLog(@"side Flipping!");
+      //  isFLipping = true;
+        [serverWebView stringByEvaluatingJavaScriptFromString:@"doSideFlip();"];
+    }*/
+    
+  // NSLog(@"x:%f y:%f z:%f", acceleration.x, acceleration.y,  acceleration.z );
 }
 
 #pragma mark - CLLocationManger Methods
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading{
-   if (isConnected) {
+  if (isConnected) {
         //float oldRad =  manager.heading.trueHeading;
         float newRad =  newHeading.trueHeading;
-        NSLog(@"%f", newRad);
+       // NSLog(@"%f", newRad);
 
 
     if (newRad < 319 && newRad >= 125) {
@@ -115,7 +133,7 @@
         }
         isMoving = true;
         isGoingUpHall = false;
-        //[serverWebView stringByEvaluatingJavaScriptFromString:@"moveForward()"];
+      //  [serverWebView stringByEvaluatingJavaScriptFromString:@"moveForward()"];
     }
    } 
     
