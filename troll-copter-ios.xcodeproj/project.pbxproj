@@ -1,0 +1,285 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		CB46D96E161EE9E10079AFCE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB46D96D161EE9E10079AFCE /* UIKit.framework */; };
+		CB46D970161EE9E10079AFCE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB46D96F161EE9E10079AFCE /* Foundation.framework */; };
+		CB46D972161EE9E10079AFCE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB46D971161EE9E10079AFCE /* CoreGraphics.framework */; };
+		CB46D978161EE9E10079AFCE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CB46D976161EE9E10079AFCE /* InfoPlist.strings */; };
+		CB46D97A161EE9E10079AFCE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CB46D979161EE9E10079AFCE /* main.m */; };
+		CB46D97E161EE9E10079AFCE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CB46D97D161EE9E10079AFCE /* AppDelegate.m */; };
+		CB46D981161EE9E10079AFCE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CB46D980161EE9E10079AFCE /* ViewController.m */; };
+		CB46D984161EE9E20079AFCE /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB46D982161EE9E20079AFCE /* ViewController.xib */; };
+		CB46D98B161EEA290079AFCE /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB46D98A161EEA290079AFCE /* CoreLocation.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		CB46D969161EE9E10079AFCE /* troll-copter-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "troll-copter-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CB46D96D161EE9E10079AFCE /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		CB46D96F161EE9E10079AFCE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		CB46D971161EE9E10079AFCE /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		CB46D975161EE9E10079AFCE /* troll-copter-ios-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "troll-copter-ios-Info.plist"; sourceTree = "<group>"; };
+		CB46D977161EE9E10079AFCE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		CB46D979161EE9E10079AFCE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		CB46D97B161EE9E10079AFCE /* troll-copter-ios-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "troll-copter-ios-Prefix.pch"; sourceTree = "<group>"; };
+		CB46D97C161EE9E10079AFCE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		CB46D97D161EE9E10079AFCE /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		CB46D97F161EE9E10079AFCE /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		CB46D980161EE9E10079AFCE /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		CB46D983161EE9E20079AFCE /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
+		CB46D98A161EEA290079AFCE /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CB46D966161EE9E10079AFCE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CB46D98B161EEA290079AFCE /* CoreLocation.framework in Frameworks */,
+				CB46D96E161EE9E10079AFCE /* UIKit.framework in Frameworks */,
+				CB46D970161EE9E10079AFCE /* Foundation.framework in Frameworks */,
+				CB46D972161EE9E10079AFCE /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		CB46D95E161EE9E10079AFCE = {
+			isa = PBXGroup;
+			children = (
+				CB46D973161EE9E10079AFCE /* troll-copter-ios */,
+				CB46D96C161EE9E10079AFCE /* Frameworks */,
+				CB46D96A161EE9E10079AFCE /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		CB46D96A161EE9E10079AFCE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CB46D969161EE9E10079AFCE /* troll-copter-ios.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CB46D96C161EE9E10079AFCE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CB46D98A161EEA290079AFCE /* CoreLocation.framework */,
+				CB46D96D161EE9E10079AFCE /* UIKit.framework */,
+				CB46D96F161EE9E10079AFCE /* Foundation.framework */,
+				CB46D971161EE9E10079AFCE /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CB46D973161EE9E10079AFCE /* troll-copter-ios */ = {
+			isa = PBXGroup;
+			children = (
+				CB46D97C161EE9E10079AFCE /* AppDelegate.h */,
+				CB46D97D161EE9E10079AFCE /* AppDelegate.m */,
+				CB46D97F161EE9E10079AFCE /* ViewController.h */,
+				CB46D980161EE9E10079AFCE /* ViewController.m */,
+				CB46D982161EE9E20079AFCE /* ViewController.xib */,
+				CB46D974161EE9E10079AFCE /* Supporting Files */,
+			);
+			path = "troll-copter-ios";
+			sourceTree = "<group>";
+		};
+		CB46D974161EE9E10079AFCE /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				CB46D975161EE9E10079AFCE /* troll-copter-ios-Info.plist */,
+				CB46D976161EE9E10079AFCE /* InfoPlist.strings */,
+				CB46D979161EE9E10079AFCE /* main.m */,
+				CB46D97B161EE9E10079AFCE /* troll-copter-ios-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CB46D968161EE9E10079AFCE /* troll-copter-ios */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CB46D987161EE9E20079AFCE /* Build configuration list for PBXNativeTarget "troll-copter-ios" */;
+			buildPhases = (
+				CB46D965161EE9E10079AFCE /* Sources */,
+				CB46D966161EE9E10079AFCE /* Frameworks */,
+				CB46D967161EE9E10079AFCE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "troll-copter-ios";
+			productName = "troll-copter-ios";
+			productReference = CB46D969161EE9E10079AFCE /* troll-copter-ios.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CB46D960161EE9E10079AFCE /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0430;
+			};
+			buildConfigurationList = CB46D963161EE9E10079AFCE /* Build configuration list for PBXProject "troll-copter-ios" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = CB46D95E161EE9E10079AFCE;
+			productRefGroup = CB46D96A161EE9E10079AFCE /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CB46D968161EE9E10079AFCE /* troll-copter-ios */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		CB46D967161EE9E10079AFCE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CB46D978161EE9E10079AFCE /* InfoPlist.strings in Resources */,
+				CB46D984161EE9E20079AFCE /* ViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CB46D965161EE9E10079AFCE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CB46D97A161EE9E10079AFCE /* main.m in Sources */,
+				CB46D97E161EE9E10079AFCE /* AppDelegate.m in Sources */,
+				CB46D981161EE9E10079AFCE /* ViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		CB46D976161EE9E10079AFCE /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CB46D977161EE9E10079AFCE /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		CB46D982161EE9E20079AFCE /* ViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CB46D983161EE9E20079AFCE /* en */,
+			);
+			name = ViewController.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		CB46D985161EE9E20079AFCE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		CB46D986161EE9E20079AFCE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		CB46D988161EE9E20079AFCE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "troll-copter-ios/troll-copter-ios-Prefix.pch";
+				INFOPLIST_FILE = "troll-copter-ios/troll-copter-ios-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		CB46D989161EE9E20079AFCE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "troll-copter-ios/troll-copter-ios-Prefix.pch";
+				INFOPLIST_FILE = "troll-copter-ios/troll-copter-ios-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CB46D963161EE9E10079AFCE /* Build configuration list for PBXProject "troll-copter-ios" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CB46D985161EE9E20079AFCE /* Debug */,
+				CB46D986161EE9E20079AFCE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CB46D987161EE9E20079AFCE /* Build configuration list for PBXNativeTarget "troll-copter-ios" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CB46D988161EE9E20079AFCE /* Debug */,
+				CB46D989161EE9E20079AFCE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = CB46D960161EE9E10079AFCE /* Project object */;
+}
