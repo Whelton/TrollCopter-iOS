@@ -17,6 +17,7 @@
     BOOL isFLipping;
     BOOL isMoving;
     BOOL isGoingUpHall;
+    BOOL isFlying;
     
     UIAccelerometer *accelerometer;
     

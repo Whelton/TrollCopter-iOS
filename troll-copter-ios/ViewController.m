@@ -10,6 +10,7 @@
 
 @interface ViewController ()
 
+
 @end
 
 @implementation ViewController
@@ -17,7 +18,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
     
     //Setup Webview
     serverWebView.delegate = self;
@@ -35,12 +35,32 @@
     accelerometer.updateInterval = .1;
     accelerometer.delegate = self;
     
-
+    //Setup state
+    isFlying = false;
     isConnected = false;
     isFLipping = false;
     isMoving = false;
-    isGoingUpHall = true;
+    isGoingUpHall = true;    
+    //Setup gesture recognition
+    
+    UISwipeGestureRecognizer *oneFingerSwipeUp = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(takeOff)];
+    [oneFingerSwipeUp setDirection:UISwipeGestureRecognizerDirectionUp];
+    [serverWebView addGestureRecognizer:oneFingerSwipeUp];
+    
+    UISwipeGestureRecognizer *oneFingerSwipeDown = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(land)];
+    [oneFingerSwipeDown setDirection:UISwipeGestureRecognizerDirectionDown];
+    [serverWebView addGestureRecognizer:oneFingerSwipeDown];
 
+}
+
+#pragma mark - UISwipeGestureRecognizer
+
+- (void)takeOff {
+    [serverWebView stringByEvaluatingJavaScriptFromString:@"takeOff();"];
+}
+
+- (void)land {
+    [serverWebView stringByEvaluatingJavaScriptFromString:@"land();"];
 }
 
 
@@ -60,9 +80,9 @@
 
 - (void)accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration {
     if (acceleration.z < -2 && isFLipping==false && isConnected == true) {
-        NSLog(@"flip");
+        NSLog(@"Flipping!");
         isFLipping = true;
-        [serverWebView stringByEvaluatingJavaScriptFromString:@"doFlip()"];
+        [serverWebView stringByEvaluatingJavaScriptFromString:@"doFlip();"];
     }
 }
 
@@ -111,8 +131,9 @@
     
     if([theAnchor hasPrefix:@"connected"]){
         isConnected = true;
-        NSLog(@"now connected, make flight");
-        [webView stringByEvaluatingJavaScriptFromString:@"makeFlight()"];
+        NSLog(@"Now connected, waiting for gesture...");
+    } else if ([theAnchor hasPrefix:@"isFlying"]) {
+        isFlying = true;
     } else if ([theAnchor hasPrefix:@"doneflip"]){
         isFLipping = false; 
     } 
