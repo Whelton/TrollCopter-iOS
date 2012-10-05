@@ -15,6 +15,8 @@
     
     BOOL isConnected;
     BOOL isFLipping;
+    BOOL isMoving;
+    BOOL isGoingUpHall;
     
     UIAccelerometer *accelerometer;
     

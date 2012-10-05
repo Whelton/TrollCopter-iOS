@@ -21,12 +21,14 @@
     
     //Setup Webview
     serverWebView.delegate = self;
-    [serverWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://192.168.1.3:3000"]]];
+    [serverWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://192.168.1.2:3000"]]];
     
     //Setup Location Manger
     userLocationManger = [[CLLocationManager alloc] init];
     userLocationManger.delegate = self;
-    //[userLocationManger startUpdatingHeading];
+    [userLocationManger setDesiredAccuracy:kCLLocationAccuracyBest];
+    [userLocationManger startUpdatingHeading];
+    //[userLocationManger startUpdatingLocation];
     
     //Setup Accelerometer
     accelerometer = [UIAccelerometer sharedAccelerometer];
@@ -36,6 +38,8 @@
 
     isConnected = false;
     isFLipping = false;
+    isMoving = false;
+    isGoingUpHall = true;
 
 }
 
@@ -65,11 +69,40 @@
 #pragma mark - CLLocationManger Methods
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading{
-    if (isConnected) {
+   if (isConnected) {
         //float oldRad =  manager.heading.trueHeading;
-        //float newRad =  newHeading.trueHeading;
+        float newRad =  newHeading.trueHeading;
+        NSLog(@"%f", newRad);
 
-     }
+
+    if (newRad < 319 && newRad >= 125) {
+        //follow up the room
+        if (isGoingUpHall == false) {
+            NSLog(@"turning 180");
+            [serverWebView stringByEvaluatingJavaScriptFromString:@"turn180()"];
+        }
+        isMoving = true;
+        isGoingUpHall = true;
+        //[serverWebView stringByEvaluatingJavaScriptFromString:@"moveForward()"];
+        
+    } else if (newRad > 0 && newRad <= 125) {
+        //go back down
+        if (isGoingUpHall == true) {
+            NSLog(@"turning 180");
+            [serverWebView stringByEvaluatingJavaScriptFromString:@"turn180()"];
+        }
+        isMoving = true;
+        isGoingUpHall = false;
+        //[serverWebView stringByEvaluatingJavaScriptFromString:@"moveForward()"];
+    }
+   } 
+    
+}
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation{
+    //if (isConnected) {
+        NSLog(@"lat: %f lng: %f", newLocation.coordinate.latitude, newLocation.coordinate.longitude);
+    //}
 }
 
 #pragma mark - WebView Methods
@@ -82,7 +115,7 @@
         [webView stringByEvaluatingJavaScriptFromString:@"makeFlight()"];
     } else if ([theAnchor hasPrefix:@"doneflip"]){
         isFLipping = false; 
-    }
+    } 
     
     return YES;
 }
