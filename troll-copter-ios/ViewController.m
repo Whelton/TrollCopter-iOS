@@ -21,7 +21,8 @@
     
     //Setup Webview
     serverWebView.delegate = self;
-    [serverWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://192.168.1.3   :3000"]]];
+
+    [serverWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://192.168.1.3:3000"]]];
     
     //Setup Location Manger
     userLocationManger = [[CLLocationManager alloc] init];
@@ -40,14 +41,20 @@
     isConnected = false;
     isFLipping = false;
     isMoving = false;
-    isGoingUpHall = true;    
+    isGoingUpHall = true; // A weird way of saying 'going forward or backward in a straight line' :P
+    
     //Setup gesture recognition
     
-    UISwipeGestureRecognizer *oneFingerSwipeUp = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(takeOff)];
+    UITapGestureRecognizer *oneFingerTwoTaps = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(takeOffOrLand)];
+    [oneFingerTwoTaps setNumberOfTapsRequired:2];
+    [oneFingerTwoTaps setNumberOfTouchesRequired:1];
+    [self.view addGestureRecognizer:oneFingerTwoTaps];
+    
+    UISwipeGestureRecognizer *oneFingerSwipeUp = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(moveBackward)];
     [oneFingerSwipeUp setDirection:UISwipeGestureRecognizerDirectionUp];
     [self.view addGestureRecognizer:oneFingerSwipeUp];
     
-    UISwipeGestureRecognizer *oneFingerSwipeDown = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(land)];
+    UISwipeGestureRecognizer *oneFingerSwipeDown = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(moveBackward)];
     [oneFingerSwipeDown setDirection:UISwipeGestureRecognizerDirectionDown];
     [self.view addGestureRecognizer:oneFingerSwipeDown];
     
@@ -59,16 +66,24 @@
 
 #pragma mark - UISwipeGestureRecognizer
 
-- (void)takeOff {
-    NSLog(@"Taking off");
-    [serverWebView stringByEvaluatingJavaScriptFromString:@"takeOff();"];
+- (void)takeOffOrLand {
+    NSLog(@"herderp");
+    if (isFlying) {
+        [serverWebView stringByEvaluatingJavaScriptFromString:@"land();"];
+    } else {
+        [serverWebView stringByEvaluatingJavaScriptFromString:@"takeOff();"];
+    }
 }
 
-- (void)land {
-    NSLog(@"Landing");
-    [serverWebView stringByEvaluatingJavaScriptFromString:@"land();"];
+- (void)moveForward {
+    NSLog(@"Moving forward..");
+   [serverWebView stringByEvaluatingJavaScriptFromString:@"moveForward();"]; 
 }
 
+- (void)moveBackward {
+    NSLog(@"Moving backward..");
+    [serverWebView stringByEvaluatingJavaScriptFromString:@"moveBackward();"];
+}
 
 - (void)viewDidUnload
 {
@@ -149,12 +164,15 @@
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
     NSString *theAnchor = [[[request URL] fragment] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     
+    //Handle change of copter state
     if([theAnchor hasPrefix:@"connected"]){
         isConnected = true;
         NSLog(@"Now connected, waiting for gesture...");
     } else if ([theAnchor hasPrefix:@"isFlying"]) {
         isFlying = true;
-    } else if ([theAnchor hasPrefix:@"doneflip"]){
+    } else if ([theAnchor hasPrefix:@"hasLanded"]) {
+        isFlying = false;
+    } else if ([theAnchor hasPrefix:@"doneflip"]) {
         isFLipping = false; 
     } 
     
