@@ -9,10 +9,15 @@
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
 
-@interface ViewController : UIViewController <UIWebViewDelegate, CLLocationManagerDelegate, CLLocationManagerDelegate>{
+@interface ViewController : UIViewController <UIWebViewDelegate, CLLocationManagerDelegate, CLLocationManagerDelegate, UIAccelerometerDelegate>{
     IBOutlet UIWebView *serverWebView;
     CLLocationManager *userLocationManger;
+    
     BOOL isConnected;
+    BOOL isFLipping;
+    
+    UIAccelerometer *accelerometer;
+    
 }
 
 @end
