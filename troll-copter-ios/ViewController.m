@@ -21,7 +21,7 @@
     
     //Setup Webview
     serverWebView.delegate = self;
-    [serverWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://192.168.1.2:3000"]]];
+    [serverWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://192.168.1.4:3000"]]];
     
     //Setup Location Manger
     userLocationManger = [[CLLocationManager alloc] init];
@@ -42,21 +42,23 @@
     
     UISwipeGestureRecognizer *oneFingerSwipeUp = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(takeOff)];
     [oneFingerSwipeUp setDirection:UISwipeGestureRecognizerDirectionUp];
-    [serverWebView addGestureRecognizer:oneFingerSwipeUp];
+    [self.view addGestureRecognizer:oneFingerSwipeUp];
     
     UISwipeGestureRecognizer *oneFingerSwipeDown = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(land)];
     [oneFingerSwipeDown setDirection:UISwipeGestureRecognizerDirectionDown];
-    [serverWebView addGestureRecognizer:oneFingerSwipeDown];
+    [self.view addGestureRecognizer:oneFingerSwipeDown];
 
 }
 
 #pragma mark - UISwipeGestureRecognizer
 
 - (void)takeOff {
+    NSLog(@"Taking off");
     [serverWebView stringByEvaluatingJavaScriptFromString:@"takeOff();"];
 }
 
 - (void)land {
+    NSLog(@"Landing");
     [serverWebView stringByEvaluatingJavaScriptFromString:@"land();"];
 }
 
