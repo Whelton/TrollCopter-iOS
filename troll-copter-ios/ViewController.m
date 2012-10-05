@@ -18,17 +18,25 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
     
     //Setup Webview
     serverWebView.delegate = self;
-    [serverWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://192.168.1.5:3000"]]];
+    [serverWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://192.168.1.2:3000"]]];
     
     //Setup Location Manger
     userLocationManger = [[CLLocationManager alloc] init];
-    [userLocationManger startUpdatingHeading];
+    userLocationManger.delegate = self;
+    //[userLocationManger startUpdatingHeading];
     
+    //Setup Accelerometer
+    accelerometer = [UIAccelerometer sharedAccelerometer];
+    accelerometer.updateInterval = .1;
+    accelerometer.delegate = self;
+    
+    //Setup state
+    isFlying = false;
     isConnected = false;
+    isFLipping = false;
     
     //Setup gesture recognition
     
@@ -41,6 +49,8 @@
     [serverWebView addGestureRecognizer:oneFingerSwipeDown];
 
 }
+
+#pragma mark - UISwipeGestureRecognizer
 
 - (void)takeOff {
     [serverWebView stringByEvaluatingJavaScriptFromString:@"takeOff();"];
@@ -62,21 +72,38 @@
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
 
-#pragma mark - CLLocationManger Methods
 
-- (void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading{
-    //Something
-    if (isConnected) {
-        
+#pragma mark - UIAccelerometer methods
+
+- (void)accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration {
+    if (acceleration.z < -2 && isFLipping==false && isConnected == true) {
+        NSLog(@"Flipping!");
+        isFLipping = true;
+        [serverWebView stringByEvaluatingJavaScriptFromString:@"doFlip();"];
     }
 }
 
+#pragma mark - CLLocationManger Methods
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading{
+    if (isConnected) {
+        //float oldRad =  manager.heading.trueHeading;
+        //float newRad =  newHeading.trueHeading;
+
+     }
+}
+
+#pragma mark - WebView Methods
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
     NSString *theAnchor = [[[request URL] fragment] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     
     if([theAnchor hasPrefix:@"connected"]){
-        NSLog(@"now connected, make flight");
-        [webView stringByEvaluatingJavaScriptFromString:@"makeFlight()"];
+        isConnected = true;
+        NSLog(@"Now connected, waiting for gesture...");
+    } else if ([theAnchor hasPrefix:@"isFlying"]) {
+        isFlying = true;
+    } else if ([theAnchor hasPrefix:@"doneflip"]){
+        isFLipping = false; 
     }
     
     return YES;
